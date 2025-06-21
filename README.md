@@ -1,2 +1,2 @@
 # WanderLust
-My First Full-Stack Project based on Hostel Booking.
+My First Full-Stack Project based on Hotel Booking.
