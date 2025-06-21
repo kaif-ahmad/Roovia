@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const Listing = require("./models/listing.js");
+
 //============================================================================
 //  Mongoose Connection
 
@@ -11,8 +13,20 @@ async function main() {
 }
 
 //============================================================================
+// Testing Route
 
-
+app.get("/testListing", async (req, res) => {
+    let sampleListing = new Listing({
+        title: "My New Villa",
+        description: "By the Beach",
+        price: 1200,
+        location: "Calangute, Goa",
+        country: "India"
+    });
+    await sampleListing.save();
+    console.log("Sample was Saved");
+    res.send("Success");
+})
 
 //============================================================================
 //  Root Route
