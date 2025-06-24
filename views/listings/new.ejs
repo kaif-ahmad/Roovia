@@ -3,14 +3,16 @@
     <div class="col-8 offset-2">
         <br>
     <h3>Add a Hotel</h3>
-    <form method="POST" action="/listings">
+    <form method="POST" action="/listings" class="needs-validation" novalidate>
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" name="listing[title]" placeholder="Enter Title" class="form-control">
+            <input type="text" name="listing[title]" placeholder="Enter Title" class="form-control" required>   
+            <div class="invalid-feedback">Cannot be Blank!</div>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea type="text" name="listing[description]" class="form-control"></textarea>
+            <textarea type="text" name="listing[description]" class="form-control" required></textarea>
+            <div class="invalid-feedback">Should be short and filled</div>
         </div>
         <div class="mb-3">
             <label for="image" class="form-label" >Image Link</label>
@@ -19,16 +21,19 @@
         <div class="row">
             <div class="mb-3 col-md-4">
                 <label for="price" class="form-label">Price</label>
-                <input type="number" name="listing[price]" placeholder="1200" class="form-control">
+                <input type="number" name="listing[price]" placeholder="1200" class="form-control" required>
+                <div class="invalid-feedback">Cannot be Blank!</div>
             </div>
             <div class="mb-3 col-md-8">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" name="listing[country]" placeholder="India" class="form-control">
+                <input type="text" name="listing[country]" placeholder="India" class="form-control" required>
+                <div class="invalid-feedback">Cannot be Blank!</div>
             </div>
         </div>
         <div class="mb-3">
             <label for="location" class="form-label">Location</label>
-            <input type="text" name="listing[location]" placeholder="Jaipur, Rajasthan" class="form-control">
+            <input type="text" name="listing[location]" placeholder="Jaipur, Rajasthan" class="form-control" required>
+            <div class="invalid-feedback">Cannot be Blank!</div>
         </div>
         <button class="btn btn-dark form-btn">ADD</button>
         <br><br>
