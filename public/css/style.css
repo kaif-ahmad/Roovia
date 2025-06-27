@@ -99,3 +99,11 @@ body{
     padding-left: 0;
     padding-right: 0;
 }
+.flash-suc{
+    border: #222222;
+    box-shadow: 2px 2px 2px 2px green;
+}
+.flash-err{
+    border: #810202;
+    box-shadow: 2px 2px 2px 2px rgb(124, 0, 0);
+}

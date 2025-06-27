@@ -1,0 +1,13 @@
+<% if(success && success.length){ //success exist krta ho tabhi dikhao%>
+<div class="alert alert-success mt-3 alert-dismissible fade show col-6 offset-3 flash-suc" role="alert">
+    <%= success %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% } %>
+
+<% if(error && error.length){ //success exist krta ho tabhi dikhao%>
+<div class="alert alert-danger mt-3 alert-dismissible fade show col-6 offset-3 flash-err" role="alert">
+    <%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% } %>
