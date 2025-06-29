@@ -13,11 +13,14 @@
             <p class="card-text"><%= listing.country %></p>
         </div>
     </div>
+    <% if(currUser && currUser._id.equals(listing.owner._id)){ %>
     <div class="btns mb-3">
         <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark form-btn">Edit</a><br>
         <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST"><button class="btn btn-dark del-btn">Delete</button></form>
     </div>
+    <% } %>
     <hr>
+<% if(currUser){ %>
     <div class="col-8 offset-2">
         <h4>Leave a Review</h4>
         <form action="/listings/<%= listing._id %>/reviews" method="POST" class="mb-3 needs-validation" novalidate>
@@ -33,12 +36,13 @@
             <button class="btn btn-dark form-btn">Submit</button>
         </form>
         <hr>
+        <% } %>
         <p><b>Past Reviews</b></p>
         <div class="row">
         <% for(let review of listing.reviews.reverse()){ %>
             <div class="card col-5 ms-5 mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">RandomUser</h5>
+                    <h5 class="card-title">@<%= review.author.username %></h5>
                     <p class="card-text"><%= review.comment %></p>
                     <p class="card-text">
                         <% for(let i=1;i<=(review.rating);i++){ %>
