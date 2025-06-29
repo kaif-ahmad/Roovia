@@ -4,6 +4,7 @@ const wrapAsync=require("../utils/wrapAsync.js");
 const {listingSchema}=require("../schema.js");
 const ExpressError=require("../utils/ExpressError.js");
 const Listing = require("../models/listing.js");
+const {isLoggedIn}=require("../middleware.js");
 
 //============================================================================
 //  Validation
@@ -30,12 +31,13 @@ router.get("/", wrapAsync(async (req, res) => {
 //  Add New Route
 
 //  Details
-router.get("/new",(req,res)=>{
-    res.render("listings/new.ejs");
+router.get("/new",isLoggedIn,(req,res)=>{
+    return res.render("listings/new.ejs");
 })
 //  Adding on DB using POST
-router.post("/",validateListing,wrapAsync(async (req,res)=>{
+router.post("/",isLoggedIn,validateListing,wrapAsync(async (req,res)=>{
     const newListing=new Listing(req.body.listing);
+    newListing.owner=req.user._id;
     await newListing.save();
     req.flash("success","Hotel Added!");
     res.redirect("/listings");
@@ -46,7 +48,7 @@ router.post("/",validateListing,wrapAsync(async (req,res)=>{
 
 router.get("/:id", wrapAsync(async (req, res) => {
     let {id}=req.params;
-    const listing=await Listing.findById(id).populate("reviews");
+    const listing=await Listing.findById(id).populate("reviews").populate("owner");
     if(!listing){
         req.flash("error","Hotel Does Not Exist!");
         return res.redirect("/listings");
@@ -58,7 +60,7 @@ router.get("/:id", wrapAsync(async (req, res) => {
 //  Edit Route
 
 //  Details
-router.get("/:id/edit",wrapAsync(async (req,res)=>{
+router.get("/:id/edit",isLoggedIn,wrapAsync(async (req,res)=>{
     let {id}=req.params;
     const listing=await Listing.findById(id);
     if(!listing){
@@ -83,7 +85,7 @@ router.put("/:id",validateListing,wrapAsync(async (req,res)=>{
 //============================================================================
 //  Delete Route
 
-router.delete("/:id",wrapAsync(async (req, res) => {
+router.delete("/:id",isLoggedIn,wrapAsync(async (req, res) => {
     let {id}=req.params;
     let deletedListing=await Listing.findByIdAndDelete(id);
     console.log(deletedListing);

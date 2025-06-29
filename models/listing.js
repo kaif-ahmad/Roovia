@@ -9,8 +9,9 @@ const listingSchema = new Schema({
     },
     description: String,
     image: {
-        filename: String,
-        url: String
+        type: String,
+        default:"https://unsplash.com/photos/black-pencil-on-white-printerpaper-nN5L5GXKFz8",
+        set: (v) => (v === "") ? "https://unsplash.com/photos/black-pencil-on-white-printerpaper-nN5L5GXKFz8": v,
     },
     price: Number,
     location: String,
@@ -20,7 +21,11 @@ const listingSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Review",
         }
-    ]
+    ],
+    owner:{
+        type:Schema.Types.ObjectId,
+        ref: "User",
+    }
 });
 
 listingSchema.post("findOneAndDelete",async(listing)=>{

@@ -105,5 +105,19 @@ body{
 }
 .flash-err{
     border: #810202;
-    box-shadow: 2px 2px 2px 2px rgb(124, 0, 0);
+    box-shadow: 2px 2px 2px 2px rgb(218, 22, 22);
+}
+
+/* SignUp/Login */
+
+.login-form{
+    box-shadow: 4px 4px 6px 6px rgb(218, 22, 22);
+}
+.sl-btn{
+    color: #ebebeb;
+    text-decoration: none !important;
+}
+.sl-switch{
+    display: flex;
+    justify-content: space-around;
 }

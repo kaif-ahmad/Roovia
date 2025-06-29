@@ -1,0 +1,28 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row mt-3">
+    <h1 class="col-7 offset-5"><i>Join Roovia</i></h1>
+    <div class="col-6 offset-3 mt-3 mb-4 login-form">
+        <form action="/signup" method="POST" class="needs-validation mb-4 mt-4" novalidate>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" id="username" class="form-control" required>   
+                <div class="invalid-feedback">Cannot be Blank!</div>
+                <div class="valid-feedback">Looks Good!</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" required>   
+                <div class="invalid-feedback">Invalid Email</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required>   
+                <div class="invalid-feedback">Cannot be Blank!</div>
+            </div>
+            <div class="sl-switch">
+                <button class="btn btn-dark form-btn col-4">Start Your Journey</button>
+                <button class="btn btn-dark form-btn col-4"><a href="/login" class="sl-btn">Already a Roovian</a></button>   
+            </div>  
+        </form>
+    </div>
+</div>

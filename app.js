@@ -6,9 +6,13 @@ const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
 const session=require("express-session");
 const flash=require("connect-flash");
+const passport=require("passport");
+const LocalStrategy=require("passport-local");
+const User=require("./models/user.js");
 
-const listing=require("./routes/listing.js");
-const review=require("./routes/review.js");
+const listingRouter=require("./routes/listing.js");
+const reviewRouter=require("./routes/review.js");
+const userRouter=require("./routes/user.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -36,6 +40,7 @@ main().then(res => { console.log("CONNECTED TO DB") }).catch(err => { console.lo
 async function main() {
     await mongoose.connect(MONGO_URL);
 }
+
 //===========================================================================
 //  Root Route
 
@@ -50,18 +55,40 @@ app.use(flash());
 
 //============================================================================
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//============================================================================
+
 app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
-    console.log(res.locals.success);
+    res.locals.currUser=req.user;
     next();
-})
+});
+
+//============================================================================
+//  SignUp Test
+
+// app.get("/demouser",async (req,res)=>{
+//     let fakeuser=new User({
+//         email: "student@gmail.com",
+//         username: "delta-sigma",
+//     });
+//     let registereduser=await User.register(fakeuser,"helloworld");
+//     res.send(registereduser);
+// });
 
 //============================================================================
 // Routes
 
-app.use("/listings",listing);
-app.use("/listings/:id/reviews",review);
+app.use("/listings",listingRouter);
+app.use("/listings/:id/reviews",reviewRouter);
+app.use("/",userRouter);
 
 //============================================================================
 //  ERRORS
