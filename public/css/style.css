@@ -121,3 +121,7 @@ body{
     display: flex;
     justify-content: space-around;
 }
+#map {
+    height: 50vh;
+    width: 120vh;
+}

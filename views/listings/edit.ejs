@@ -3,7 +3,7 @@
     <div class="col-8 offset-2">
     <br>
     <h3>Edit Listing</h3>
-    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" name="listing[title]" value="<%= listing.title %>" class="form-control" required>
@@ -15,9 +15,12 @@
             <div class="invalid-feedback">Should be short and filled</div>
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label" >Image Link</label>
-            <input type="text" name="listing[image]" value="<%= listing.image %>" class="form-control" required>
-            <div class="invalid-feedback">Cannot be Blank!</div>
+            Original Listing Image <br>
+            <img src="<%= originalImage %>" alt="" class="show-img">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label" >Upload New Image</label>
+            <input type="file" name="listing[image]" class="form-control">
         </div>
         <div class="row">
             <div class="mb-3 col-md-4">
