@@ -89,7 +89,7 @@ app.use((req,res,next)=>{
 // Routes
 
 app.get("/",(req,res)=>{
-    res.render("/listings");
+    res.redirect("/listings");
 })
 
 app.use("/listings",listingRouter);
@@ -99,9 +99,9 @@ app.use("/",userRouter);
 //============================================================================
 //  ERRORS
 
-app.all("*",(req,res,next)=>{
-    return next(new ExpressError(404,"Page Not Found!"));
-})
+// app.all("*",(req,res,next)=>{
+//     return next(new ExpressError(404,"Page Not Found!"));
+// })
 
 app.use((err,req,res,next)=>{
     let {statusCode=500,message="Something Went Wrong!"}=err;
