@@ -15,3 +15,12 @@ https://nodejs.org/en/download
 ```
 node app.js
 ```
+
+  
+  
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   HTML+CSS+JS for Frontend
+*   MongoDB + Express.js + Node.js For Backend
