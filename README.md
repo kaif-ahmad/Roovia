@@ -10,7 +10,7 @@
 https://nodejs.org/en/download
 ```
 
-<p>2. Change Directory to Folder</p>
+<p>2. Change Directory to folder : Roovia</p>
 
 <p>3. Install Dependencies</p>
 
